@@ -36,19 +36,22 @@ window.Gift = window.Gift || {};
   };
   function nextBirthday() {
     if (!G.cfg.birthday) return null;
-    const [m, d] = G.cfg.birthday.split('-').map(Number);
+    const p = String(G.cfg.birthday).split('-').map(Number);
+    if (p.length < 3 || !p[1] || !p[2] || p[1] > 12 || p[2] > 31) return null;
+    const m = p[1], d = p[2];
     const now = new Date(); now.setHours(0, 0, 0, 0);
-    let y = now.getFullYear();
-    let target = new Date(y, m - 1, d);
-    if (target < now) target = new Date(y + 1, m - 1, d);
-    return target;
+    let target = new Date(now.getFullYear(), m - 1, d);
+    if (target < now) target = new Date(now.getFullYear() + 1, m - 1, d);
+    return isNaN(target.getTime()) ? null : target;
   }
   function updateCountdown() {
     const el = document.getElementById('countdown-box'); if (!el) return;
     const t = nextBirthday();
     if (!t) { el.innerHTML = '设置一个生日日期<br><b>—</b> 天后可见'; return; }
-    const days = Math.max(0, Math.ceil((t - new Date()) / 86400000));
-    el.innerHTML = '距离下次生日还有<br><b>' + days + '</b> 天';
+    const now = new Date(); now.setHours(0, 0, 0, 0);
+    const days = Math.max(0, Math.round((t - now) / 86400000));
+    el.innerHTML = days === 0 ? '就是今天，生日快乐！<br><b>♡</b>' :
+      '距离下次生日还有<br><b>' + days + '</b> 天';
   }
   G.nextBirthday = nextBirthday;
 
