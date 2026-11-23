@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>她的年历 · 给她的礼物</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="stardust" id="stardust"></div>
+<div class="cal-wrap">
+  <div class="cal-top">
+    <a class="back" href="index.html">← 回到礼物</a>
+    <h1>给 <em id="calName">亲爱的你</em> 的 <span id="calYearTitle">2027</span> 年历</h1>
+    <div class="ctl">
+      <select id="yearSelect" title="选择年份"></select>
+      <button class="btn" id="printBtn">打印 / 存为 PDF</button>
+    </div>
+  </div>
+  <p class="hint" style="margin:-12px 0 22px">点击每月的照片可以替换成她的照片；点击语录可以直接修改。打印时每个月会单独占一页。</p>
+  <div class="month-grid" id="monthGrid"></div>
+</div>
+<button class="to-top" id="toTop" title="回到顶部">↑</button>
+<script src="assets/core.js"></script>
+<script src="assets/calendar.js"></script>
+</body>
+</html>

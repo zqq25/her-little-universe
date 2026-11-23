@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>给她的礼物</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="给她的礼物：一个装着照片、回忆、祝福和约定的小宇宙。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="stardust" id="stardust"></div>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">♡</div><div><b>给 <span data-bind="name">亲爱的你</span></b><small>给她的礼物 · 2027</small></div></div>
+    <div class="nav-label">礼物清单</div>
+    <nav class="nav">
+      <button class="active" data-go="home"><span class="ico">🏠</span>序 · 打开礼物</button>
+      <button data-go="calendar"><span class="ico">📅</span>她的年历</button>
+      <button data-go="childhood"><span class="ico">🌱</span>童年相册回忆录</button>
+      <button data-go="filter"><span class="ico">🖼️</span>滤镜工坊</button>
+      <button data-go="doodle"><span class="ico">✏️</span>涂鸦照片墙</button>
+      <button data-go="blessings"><span class="ico">💬</span>朋友的留言区</button>
+      <button data-go="promise"><span class="ico">🤝</span>我们的约定</button>
+      <button data-go="booth"><span class="ico">☎️</span>空间手机站</button>
+      <button data-go="letters"><span class="ico">💌</span>时光信</button>
+      <button data-go="music"><span class="ico">🎵</span>点歌台</button>
+    </nav>
+    <div class="side-foot">每一格都是悄悄话。<br>这里的照片与文字只保存在<b>这台设备</b>上，<br>记得备份哦 ♡</div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ============ 首页 ============ -->
+    <section class="section active" id="sec-home">
+      <div class="hero">
+        <span class="tag">A LITTLE UNIVERSE FOR YOU</span>
+        <h1>嗨，<em data-bind="name">亲爱的你</em>，<br>这是为你准备的一整个宇宙。</h1>
+        <p>十二个月的照片与悄悄话，一条从小到大的时间线，一间被祝福填满的小屋，还有写着我们约定的漂流瓶。慢慢逛，不用着急——这里的每一件小东西，都在替我说一句：生日快乐。</p>
+        <div class="countdown" id="countdown-box">设置一个生日日期<br><b>—</b> 天后可见</div>
+      </div>
+
+      <div class="quick-grid">
+        <button class="quick" data-go="calendar"><span class="qi">📅</span><b>十二个月年历</b><small>每月一张她的照片，配一句暖心话，四季换色</small></button>
+        <button class="quick" data-go="childhood"><span class="qi">🌱</span><b>童年相册回忆录</b><small>沿着时间线，看看她是怎么长成今天的样子</small></button>
+        <button class="quick" data-go="filter"><span class="qi">🖼️</span><b>滤镜工坊</b><small>上传照片，调出复古胶片与像素风，保存下来</small></button>
+        <button class="quick" data-go="doodle"><span class="qi">✏️</span><b>涂鸦照片墙</b><small>在照片上涂画、写字，贴满整面墙</small></button>
+        <button class="quick" data-go="blessings"><span class="qi">💬</span><b>朋友的留言区</b><small>把大家祝福贴满一间暖暖的小屋</small></button>
+        <button class="quick" data-go="promise"><span class="qi">🤝</span><b>我们的约定</b><small>装进漂流瓶；无聊时转盘抽一个一起做</small></button>
+        <button class="quick" data-go="booth"><span class="qi">☎️</span><b>空间手机站</b><small>说话、写字、哼一段歌，发往外太空</small></button>
+        <button class="quick" data-go="letters"><span class="qi">💌</span><b>定时可见的信</b><small>写给她未来某一天的信，时间到了才拆得开</small></button>
+        <button class="quick" data-go="music"><span class="qi">🎵</span><b>点歌台</b><small>点一首歌，留一句话，唱片转起来</small></button>
+        <button class="quick" data-go="home"><span class="qi">⚙️</span><b>改个名字</b><small>把她的昵称和生日写进礼物里</small></button>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <h3>先把她的名字写进来</h3>
+        <p class="sub">名字会出现在年历和网页各处；生日日期用于倒计时和"定时可见的信"。</p>
+        <div class="setting-line">
+          <div><label class="field"><span>她的名字 / 昵称</span><input type="text" id="cfg-name" placeholder="例如：小满"></label></div>
+          <div><label class="field"><span>礼物标题</span><input type="text" id="cfg-title" placeholder="给她的礼物"></label></div>
+          <div><label class="field"><span>生日日期</span><input type="date" id="cfg-birthday"></label></div>
+          <button class="btn" id="cfg-save">保存</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 年历 ============ -->
+    <section class="section" id="sec-calendar">
+      <div class="sec-head"><div class="eyebrow">01 · CALENDAR</div><h2>十二个月，十二张她的照片</h2><p>每个月一张：照片、当季的暖心话、会随季节换色的卡片。点击照片就能替换成她的照片，还能修改说的话。</p></div>
+      <div class="card cal-entry">
+        <div>
+          <h3>一本可以打印的年历</h3>
+          <p class="sub">在年历页面里，逐月上传照片、编辑语录、切换年份（默认 2027）。点"打印 / 存为 PDF"，每个月会单独占一页，印出来就是一本实体年历。</p>
+          <div class="row"><a class="btn" href="calendar.html" target="_blank">打开年历 →</a><span class="hint">新标签页打开，方便对照着上传</span></div>
+        </div>
+        <div class="cal-preview" id="calPreview"></div>
+      </div>
+    </section>
+
+    <!-- ============ 童年相册回忆录 ============ -->
+    <section class="section" id="sec-childhood">
+      <div class="sec-head"><div class="eyebrow">02 · GROWING UP</div><h2>童年相册回忆录</h2><p>从几岁那年到现在，一张照片配一段小故事。让她沿着时间线，重新看一遍自己长大的样子。</p></div>
+      <div class="row" style="margin-bottom:14px">
+        <button class="btn" id="memPlay">▶ 播放成长动画</button>
+        <span class="hint">把回忆变成一段会自动翻页的小电影，开场和结尾也一起放给她看。</span>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <h3>添加一段回忆</h3><p class="sub">按时间从前往后添加，故事会按顺序排好。</p>
+          <label class="field"><span>几岁 / 哪一年</span><input type="text" id="memAge" placeholder="例如：7 岁 · 2013 年"></label>
+          <label class="field"><span>这一页的标题</span><input type="text" id="memTitle" placeholder="例如：第一次骑自行车"></label>
+          <label class="field"><span>当时的故事</span><textarea id="memText" rows="4" placeholder="那天发生了什么？记得什么味道、什么声音？"></textarea></label>
+          <label class="field"><span>照片（选填）</span><input type="file" id="memFile" accept="image/*"></label>
+          <div class="row"><button class="btn" id="memAdd">收进回忆录 🌱</button><button class="btn ghost sm" id="memReset">重新添加</button></div>
+        </div>
+        <div class="card">
+          <h3>成长时间线</h3><p class="sub" id="memCount">还没有回忆，先写一段吧。</p>
+          <div class="timeline" id="memTimeline"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 滤镜工坊 ============ -->
+    <section class="section" id="sec-filter">
+      <div class="sec-head"><div class="eyebrow">03 · FILTER LAB</div><h2>滤镜工坊</h2><p>单张照片调滤镜和像素风；或者把好几张照片拼成一张拼贴图。做完可以下载，也可以送进涂鸦墙继续加字。</p></div>
+      <div class="mode-tabs" id="filterTabs" style="max-width:340px;margin-bottom:14px">
+        <button class="active" data-ftab="single">🖼️ 单张滤镜</button>
+        <button data-ftab="collage">🧩 多图拼贴</button>
+        <button data-ftab="deco">🎀 贴纸装扮</button>
+      </div>
+      <div id="singlePanel">
+      <div class="filter-layout">
+        <div class="card">
+          <div class="drop" id="filterDrop">
+            <canvas id="filterCanvas" style="display:none"></canvas>
+            <div class="ph" id="filterPh"><b>📷</b>点这里上传照片<br>或把照片拖进来</div>
+          </div>
+          <input type="file" id="filterFile" accept="image/*" hidden>
+          <div class="row" style="margin-top:14px">
+            <button class="btn sm" id="filterDownload">下载这张</button>
+            <button class="btn ghost sm" id="filterToWall">送去涂鸦墙</button>
+            <button class="btn ghost sm" id="filterClear">换一张</button>
+            <span class="spacer"></span><span class="hint" id="filterInfo"></span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>挑一种味道</h3><p class="sub">滤镜强度与像素颗粒都可以滑动调节。</p>
+          <div class="presets" id="presets"></div>
+          <div class="slider"><label><span>滤镜强度</span><span id="intensityVal">100%</span></label><input type="range" id="filterIntensity" min="0" max="100" value="100"></div>
+          <div class="slider"><label><span>复古像素颗粒</span><span id="pixelVal">关闭</span></label><input type="range" id="pixelSize" min="0" max="24" value="0"></div>
+          <div class="hint">像素越大，颗粒感越重。调到 0 就是清晰原图。</div>
+        </div>
+      </div>
+      </div>
+
+      <div id="collagePanel" style="display:none">
+        <div class="filter-layout">
+          <div class="card">
+            <div class="drop" id="collageDrop" style="min-height:210px">
+              <div class="ph" id="collagePh"><b>🧩</b>点这里选多张照片<br>或把照片拖进来</div>
+            </div>
+            <canvas id="collageCanvas" width="1000" height="1000" style="display:none;width:100%;border-radius:12px;margin-top:12px"></canvas>
+            <input type="file" id="collageFile" accept="image/*" multiple hidden>
+            <div class="row" style="margin-top:14px">
+              <button class="btn sm" id="collageDownload">下载拼图</button>
+              <button class="btn ghost sm" id="collageToWall">送去涂鸦墙</button>
+              <button class="btn ghost sm" id="collageClear">清空</button>
+              <span class="spacer"></span><span class="hint" id="collageInfo"></span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>拼贴设置</h3><p class="sub" id="collageCount">还没有照片，先选几张吧。</p>
+            <label class="field"><span>排版</span><select id="collageLayout">
+              <option value="grid">2 × 2 方格</option><option value="side">一大两小</option>
+              <option value="top">两上一下</option><option value="strip">三格竖排</option>
+              <option value="hero">一上三下</option><option value="four">四格横排</option>
+            </select></label>
+            <label class="field"><span>统一滤镜</span><select id="collageFilter">
+              <option value="warm">暖阳</option><option value="film">胶片</option><option value="retro">复古</option>
+              <option value="cream">奶油</option><option value="rose">粉调</option><option value="dusk">暮色</option>
+              <option value="mono">黑白</option><option value="origin">原图</option>
+            </select></label>
+            <div class="slider"><label><span>滤镜强度</span><span id="collageIntVal">80%</span></label><input type="range" id="collageInt" min="0" max="100" value="80"></div>
+            <div class="slider"><label><span>照片间距</span><span id="collageGapVal">14 px</span></label><input type="range" id="collageGap" min="0" max="40" value="14"></div>
+            <label class="field"><span>底色</span><select id="collageBg">
+              <option value="#FFF9F2">奶油白</option><option value="#FFFFFF">纯白</option>
+              <option value="#FBE7DE">浅珊瑚</option><option value="#E9EFF0">雾蓝</option><option value="#3C3A4F">深夜蓝</option>
+            </select></label>
+            <label class="field"><span>底部标题（选填）</span><input type="text" id="collageTitle" placeholder="例如：我们的夏天"></label>
+            <div class="hint">照片会自动裁剪填满每一格；不够的格子会循环使用已选照片。</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="decoPanel" style="display:none">
+        <div class="filter-layout">
+          <div class="card">
+            <div class="drop" id="decoDrop" style="min-height:180px">
+              <div class="ph" id="decoPh"><b>🎀</b>上传一张照片，开始贴贴纸<br>或把照片拖进来</div>
+            </div>
+            <input type="file" id="decoFile" accept="image/*" hidden>
+            <canvas id="decoCanvas" width="900" height="900" style="display:none;width:100%;border-radius:12px;margin-top:12px;touch-action:none"></canvas>
+            <div class="row" style="margin-top:14px">
+              <button class="btn sm" id="decoDownload">下载作品</button>
+              <button class="btn ghost sm" id="decoToWall">送去涂鸦墙</button>
+              <button class="btn ghost sm" id="decoClearStickers">清空贴纸</button>
+              <button class="btn ghost sm" id="decoReset">换照片</button>
+            </div>
+            <div class="hint" style="margin-top:8px">点下面的贴纸放上去，直接在照片里拖动；选中后可以调大小、旋转和颜色。</div>
+          </div>
+          <div class="card">
+            <h3>挑贴纸</h3><p class="sub" id="decoTip">像玩穿搭小游戏一样，给她贴点可爱的东西。</p>
+            <div class="mode-tabs" id="decoCats" style="margin-bottom:10px">
+              <button class="active" data-cat="emoji">Emoji</button>
+              <button data-cat="shape">圈圈</button>
+              <button data-cat="retro">复古</button>
+              <button data-cat="dress">装扮</button>
+              <button data-cat="text">文字</button>
+            </div>
+            <div class="sticker-grid" id="stickerGrid"></div>
+            <div class="deco-controls">
+              <label class="field"><span>选中贴纸 · 大小 <b id="decoSizeVal">120</b></span><input type="range" id="decoSize" min="30" max="300" value="120"></label>
+              <label class="field"><span>旋转 <b id="decoRotVal">0</b>°</span><input type="range" id="decoRot" min="-180" max="180" value="0"></label>
+              <label class="field"><span>颜色（圈圈 / 文字）</span><input type="color" id="decoColor" value="#E8836F"></label>
+              <div class="row"><button class="btn ghost sm" id="decoDup">复制</button><button class="btn ghost sm" id="decoDel">删除选中</button><button class="btn ghost sm" id="decoFront">置顶</button></div>
+            </div>
+            <div class="deco-bg">
+              <label><input type="checkbox" id="decoFilm"> 胶片边框</label>
+              <label><input type="checkbox" id="decoGrid"> 网格线</label>
+              <label><input type="checkbox" id="decoDate"> 日期戳</label>
+              <label><input type="checkbox" id="decoTape"> 胶带角</label>
+            </div>
+            <label class="field"><span>照片滤镜</span><select id="decoFilter">
+              <option value="warm">暖阳</option><option value="film">胶片</option><option value="retro">复古</option>
+              <option value="cream">奶油</option><option value="rose">粉调</option><option value="dusk">暮色</option>
+              <option value="mono">黑白</option><option value="origin">原图</option>
+            </select></label>
+            <div class="slider"><label><span>滤镜强度</span><span id="decoIntVal">70%</span></label><input type="range" id="decoInt" min="0" max="100" value="70"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 涂鸦照片墙 ============ -->
+    <section class="section" id="sec-doodle">
+      <div class="sec-head"><div class="eyebrow">04 · DOODLE WALL</div><h2>涂鸦照片墙</h2><p>上传照片，在上面画画、加文字：箭头、爱心、歪歪扭扭的一句话。文字可以直接拖动位置，画完贴到墙上。</p></div>
+      <div class="row" style="margin-bottom:14px">
+        <label class="btn" for="wallFile">＋ 上传照片来涂鸦</label><input type="file" id="wallFile" accept="image/*" hidden>
+        <span class="hint">点击墙上的照片可以放大查看</span>
+      </div>
+      <div class="wall"><div class="wall-grid" id="wallGrid"></div></div>
+    </section>
+
+    <!-- ============ 朋友的留言区 ============ -->
+    <section class="section" id="sec-blessings">
+      <div class="sec-head"><div class="eyebrow">05 · BLESSING ROOM</div><h2>朋友的留言区</h2><p>一句话也行，一小段话也行。把大家的祝福贴满这间小屋，让她一进来就被暖到。</p></div>
+      <div class="bless-layout">
+        <div class="card">
+          <h3>留一句祝福</h3><p class="sub">挑一种颜色，把想说的话贴在墙上。</p>
+          <label class="field"><span>你是谁</span><input type="text" id="blesFrom" placeholder="例如：你的同桌 / 老张"></label>
+          <label class="field"><span>想说的话</span><textarea id="blesText" rows="6" placeholder="祝你生日快乐，愿你…"></textarea></label>
+          <label class="field"><span>便签颜色</span><select id="blesMood">
+            <option value="coral">暖暖的珊瑚</option><option value="amber">阳光的橘黄</option>
+            <option value="sage">清新的草绿</option><option value="blue">安静的蓝</option><option value="lav">梦幻的紫</option>
+          </select></label>
+          <button class="btn" id="blesAdd">贴到小屋 💬</button>
+        </div>
+        <div class="card">
+          <h3>祝福小屋 <span id="blesCount" style="font-size:12px;color:var(--muted);font-family:var(--sans)"></span></h3>
+          <p class="sub">每一张便签都是一个人认真写下的话。</p>
+          <div class="bless-wall" id="blesWall"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 我们的约定 ============ -->
+    <section class="section" id="sec-promise">
+      <div class="sec-head"><div class="eyebrow">06 · OUR PROMISES</div><h2>我们的约定</h2><p>想一起去完成的事，装进漂流瓶。无聊的时候，转个转盘或抽支签，让命运挑一件今天就去做的挑战。</p></div>
+      <div class="promise-top">
+        <div class="card wheel-card">
+          <h3>今天做点什么？</h3><p class="sub" id="wheelHint">先装几个漂流瓶，再来转转盘。</p>
+          <div class="wheel-wrap">
+            <div class="wheel-pointer"></div>
+            <div class="wheel" id="wheel"></div>
+            <div class="wheel-center" id="wheelCenter">GO</div>
+          </div>
+          <div class="row" style="justify-content:center;margin-top:14px">
+            <button class="btn" id="spinBtn">转动转盘 🎡</button>
+            <button class="btn ghost" id="drawBtn">抽一支签 🎋</button>
+          </div>
+          <div class="draw-result" id="drawResult">转一下，看看今天该做什么 ✨</div>
+        </div>
+        <div class="card">
+          <h3>写一个新的约定</h3><p class="sub">写得具体一点，将来才更容易实现。</p>
+          <label class="field"><span>想一起做的事</span><input type="text" id="promTitle" placeholder="例如：一起去看海"></label>
+          <label class="field"><span>小备注（选填）</span><textarea id="promNote" rows="4" placeholder="什么时候、在哪里、要带什么…"></textarea></label>
+          <button class="btn" id="promAdd">装进漂流瓶 🍾</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>漂流瓶 · 我们的 to do</h3><p class="sub">做到了就点"完成"，瓶子会被盖上一个印章。</p>
+        <div class="bottle-grid" id="bottleGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ 手机站 ============ -->
+    <section class="section" id="sec-booth">
+      <div class="sec-head"><div class="eyebrow">07 · SPACE PHONE</div><h2>空间手机站</h2><p>说话、写字，或者哼一段歌——它们都会变成从外太空发来的消息，留在这里。</p></div>
+      <div class="booth">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen">
+            <h4>✦ DEEP SPACE LINE</h4>
+            <div class="orb" id="boothOrb"></div>
+            <div class="tiny" id="boothStatus">信号已连接<br>等待你的消息…</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>今天想用哪种方式？</h3><p class="sub">录音会保存在这台设备的浏览器里，点一下就能播放。</p>
+          <div class="mode-tabs">
+            <button class="active" data-mode="speak">🎙 说话</button>
+            <button data-mode="hum">🎵 哼歌</button>
+            <button data-mode="write">✍️ 写字</button>
+          </div>
+          <div id="modePanel"></div>
+          <div class="hint" style="margin-top:14px">收到的消息 ↓</div>
+          <div class="msg-list" id="msgList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 时光信 ============ -->
+    <section class="section" id="sec-letters">
+      <div class="sec-head"><div class="eyebrow">08 · TIME LETTERS</div><h2>只有那天才看得见的信</h2><p>写一封信，选一个时间。在那之前，它只是一只封好的信封；时间一到，才会自动拆开。</p></div>
+      <div class="grid2">
+        <div class="card">
+          <h3>写一封未来的信</h3><p class="sub">小提示：时间以这台设备的系统时钟为准。</p>
+          <label class="field"><span>信封标题</span><input type="text" id="letterTitle" placeholder="例如：二十岁那天的你"></label>
+          <label class="field"><span>想说的话</span><textarea id="letterBody" rows="6" placeholder="亲爱的你…"></textarea></label>
+          <label class="field"><span>什么时候才能看见</span><input type="datetime-local" id="letterTime"></label>
+          <button class="btn" id="letterAdd">封好这封信 💌</button>
+        </div>
+        <div class="card"><h3>信箱</h3><p class="sub">等待开封的信会显示倒计时。</p><div id="letterList" style="display:flex;flex-direction:column;gap:12px"></div></div>
+      </div>
+    </section>
+
+    <!-- ============ 点歌台 ============ -->
+    <section class="section" id="sec-music">
+      <div class="sec-head"><div class="eyebrow">09 · MUSIC BOX</div><h2>点歌台</h2><p>选一首歌，写一句想说的话。点播放，就用一段小旋律替你把歌唱出来。</p></div>
+      <div class="grid2">
+        <div class="card">
+          <h3>点一首歌</h3><p class="sub">内置几段可直接播放的小旋律；也可以填任意歌名，配上一段专属旋律。</p>
+          <label class="field"><span>选一首内置旋律</span><select id="songSelect"></select></label>
+          <label class="field"><span>或者自己写歌名（选填，会覆盖上面的名字）</span><input type="text" id="songName" placeholder="例如：我们那天的歌"></label>
+          <label class="field"><span>点歌的话</span><input type="text" id="dedicate" placeholder="例如：希望你今天开心一整天"></label>
+          <button class="btn" id="requestBtn">加入歌单 ♪</button>
+        </div>
+        <div class="card">
+          <h3>今日歌单</h3><p class="sub" id="nowPlaying">还没有播放中的歌</p>
+          <div class="song-list" id="playlist"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- 涂鸦编辑器 -->
+<div class="editor" id="editor">
+  <div class="editor-inner">
+    <h3 style="font-family:var(--serif);margin:0 0 4px">在上面乱画吧 ✏️</h3>
+    <p class="sub" style="font-size:12px;color:var(--muted);margin:0">用鼠标或手指画；也可以加文字，加好后直接拖动改位置。</p>
+    <div class="tools" id="swatches">
+      <span class="swatch active" data-color="#E8836F" style="background:#E8836F"></span>
+      <span class="swatch" data-color="#EFAE63" style="background:#EFAE63"></span>
+      <span class="swatch" data-color="#8FB89A" style="background:#8FB89A"></span>
+      <span class="swatch" data-color="#7E96BC" style="background:#7E96BC"></span>
+      <span class="swatch" data-color="#BBA8D6" style="background:#BBA8D6"></span>
+      <span class="swatch" data-color="#4A3A33" style="background:#4A3A33"></span>
+      <span class="swatch" data-color="#FFFFFF" style="background:#fff"></span>
+      <span style="width:14px"></span>
+      <span class="hint">笔刷</span><input type="range" id="brushSize" min="2" max="40" value="10" style="width:100px">
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="undoBtn">↶ 撤销</button>
+      <button class="btn ghost sm" id="clearDoodle">清空</button>
+      <button class="btn ghost sm" id="closeEditor">取消</button>
+      <button class="btn sm" id="saveDoodle">贴到墙上</button>
+    </div>
+    <div class="tools text-tools">
+      <span class="hint">加文字</span>
+      <input type="text" id="textInput" placeholder="例如：我们那一天" style="max-width:210px">
+      <span class="hint">字号</span><input type="range" id="textSize" min="22" max="90" value="46" style="width:90px">
+      <button class="btn ghost sm" id="addText">＋ 加上文字</button>
+      <button class="btn ghost sm" id="delText">删除选中文字</button>
+      <span class="hint">文字用上面选的颜色；点一下文字可以选中，拖动可以换位置</span>
+    </div>
+    <canvas id="doodleCanvas" width="900" height="700"></canvas>
+    <label class="field" style="margin-top:12px"><span>照片下方写点什么（选填）</span><input type="text" id="doodleCaption" placeholder="例如：那天的我们"></label>
+  </div>
+</div>
+
+<!-- 成长幻灯片 -->
+<div class="story" id="story">
+  <button class="story-close" id="storyClose" title="关闭">×</button>
+  <div class="story-stage" id="storyStage"></div>
+  <div class="story-track"><div class="story-progress" id="storyProgress"></div></div>
+  <div class="story-controls">
+    <button id="storyPrev">← 上一页</button>
+    <button id="storyPause">⏸ 暂停</button>
+    <button id="storyNext">下一页 →</button>
+    <span id="storyCount"></span>
+  </div>
+</div>
+
+<div class="modal" id="modal"><div class="modal-inner"><img id="modalImg" alt="放大查看"></div></div>
+<div class="toast" id="toast"></div>
+<button class="to-top" id="toTop" title="回到顶部">↑</button>
+
+<script src="assets/core.js"></script>
+<script src="assets/features.js"></script>
+</body>
+</html>
